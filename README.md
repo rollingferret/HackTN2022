@@ -1,26 +1,16 @@
-# Flask React Project
-
-This is the starter for the Flask React project.
-
 ## Getting started
 
-1. Clone this repository (only this branch)
-
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
-
-2. Install dependencies
+1. Install dependencies
 
       ```bash
       pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
       ```
 
-3. Create a **.env** file based on the example with proper settings for your
+2. Create a **.env** file based on the example with proper settings for your
    development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+3. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+4. Get into your pipenv, migrate your database, seed your database, and run your flask app
 
    ```bash
    pipenv shell
@@ -38,7 +28,7 @@ This is the starter for the Flask React project.
    flask run
    ```
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+5. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
 
 ***
 *IMPORTANT!*
@@ -82,7 +72,7 @@ hurt to run it again.
    ```
 
 7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
+   This should be the full URL of your Heroku app
 8. Push your docker container to heroku from the root directory of your project.
    (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
    This will build the Dockerfile and push the image to your heroku container registry.
