@@ -6,6 +6,9 @@ const mapStyles = {
     height: '40%'
 }
 
+let key = process.env.REACT_APP_GOOGLEMAPS
+// console.log(key)
+
 export class MapContainer extends React.Component {
 
     render() {
@@ -24,5 +27,5 @@ export class MapContainer extends React.Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBmW2VGroK49j2DSFbwPqskiZb69CgDX-c'
+    apiKey: key
 })(MapContainer);
