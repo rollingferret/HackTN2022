@@ -3,9 +3,9 @@
 """Seed JSON file with longs and lats of daycare addresses."""
 
 import json
-from unittest import main
 from geopy.geocoders import Nominatim
 app = Nominatim(user_agent='daycare_finder')
+# * MAKE SURE TO MAKE A CHECKBOX OR SOMETHING THAT SAYS WHETHER ADDRESS IS EXACT OR NOT
 
 daycares = json.load(open('../../react-app/site_data/formatted_daycares.json'))
 
