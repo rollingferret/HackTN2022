@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, Circle } from 'google-maps-react';
 
 const mapStyles = {
     width: '40%',
@@ -42,10 +42,22 @@ export class MapContainer extends React.Component {
             <div>{lat} {long}</div>
             <Map
                 google={this.props.google}
-                zoom={8}
+                zoom={13}
                 style={mapStyles}
                 initialCenter={{ lat: lat, lng: long }}
             >
+            <Circle
+                radius={1600}
+                center={{ lat: lat, lng: long }}
+                onMouseover={() => console.log('mouseover')}
+                onClick={() => console.log('click')}
+                onMouseout={() => console.log('mouseout')}
+                strokeColor='transparent'
+                strokeOpacity={0}
+                strokeWeight={5}
+                fillColor='#FF0000'
+                fillOpacity={0.2}
+            />
                 <Marker position={{ lat: 48.00, lng: -122.00 }} />
                 <Marker position={{ lat: 39.00, lng: -120.00 }} />
             </Map>
