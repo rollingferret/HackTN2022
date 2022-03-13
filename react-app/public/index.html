@@ -7,9 +7,9 @@
   <style type="text/css">
     /* Set the size of the div element that contains the map */
     #map {
-      height: 400px;
+      height: 80vh;
       /* The height is 400 pixels */
-      width: 100%;
+      width: 70vw;
       /* The width is the width of the web page */
     }
   </style>
@@ -19,23 +19,23 @@
       const res = await fetch('./formatted_daycares.json')
       const dayCares = await res.json()
       const dayCaresArray = Object.values(dayCares)
-  
+
 
       let lat
       let long
 
-      if(navigator.geolocation) {
-          console.log("navigator.geolocation is available");
-          navigator.geolocation.getCurrentPosition(function(position) {
+      if (navigator.geolocation) {
+        console.log("navigator.geolocation is available");
+        navigator.geolocation.getCurrentPosition(function (position) {
           console.log("current position acquired");
           lat = Number(position.coords.latitude)
           long = Number(position.coords.longitude)
           console.log(lat, long)
-      });
-}
+        });
+      }
 
       // The location of Tenn
-      const tenn = { lat: lat?lat:35.823659, lng: long?long:-84.046718 };
+      const tenn = { lat: lat ? lat : 35.823659, lng: long ? long : -84.046718 };
 
       // The map, centered at Tenn
       const map = new google.maps.Map(document.getElementById("map"), {
@@ -45,51 +45,53 @@
       });
 
       let circle = new google.maps.Circle({
-          radius: 1200,
-          center: tenn,
-          strokeColor: 'transparent',
-          strokeOpacity: 0,
-          strokeWeight: 5,
-          fillColor:'#FF0000',
-          fillOpacity: 0.2,
-          map,
+        radius: 1200,
+        center: tenn,
+        strokeColor: 'transparent',
+        strokeOpacity: 0,
+        strokeWeight: 5,
+        fillColor: '#FF0000',
+        fillOpacity: 0.2,
+        map,
       })
-
-      let dayCareMarkers = dayCaresArray.map((dayCare) => {
+      console.log(dayCaresArray.length)
+      let dayCareMarkers = dayCaresArray.map((dayCare, i) => {
+        console.log(i)
         if (dayCare.coordinates.accuracy === 'exact') {
-    
-        const position = { lat: dayCare.coordinates.latitude, lng: dayCare.coordinates.longitude }
-        let name = dayCare.name
-        let i = 0;
 
-        let tempLocation =  this['location' + i]
-        let tempWindow = this['infoWindow' + i]
+          const position = { lat: dayCare.coordinates.latitude, lng: dayCare.coordinates.longitude }
+          let name = dayCare.name
+          let i = 0;
 
-        tempLocation = new google.maps.Marker({
-          position,
-          map,
-          title: name,
-        })
+          let tempLocation = this['location' + i]
+          let tempWindow = this['infoWindow' + i]
 
-        tempWindow = new google.maps.InfoWindow({
-          content: name,
-        })
 
-        tempLocation.addListener("click", () => {
-          console.log('hiiii')
-          tempWindow.open({
-      anchor: tempLocation,
-      map,
-      shouldFocus: false,
-    });
+          tempLocation = new google.maps.Marker({
+            position,
+            map,
+            title: name,
+          })
 
-    setTimeout(function () { tempWindow.close(); }, 5000);
+          tempWindow = new google.maps.InfoWindow({
+            content: name,
+          })
 
-  });
- 
+          tempLocation.addListener("click", () => {
+            console.log('hiiii')
+            tempWindow.open({
+              anchor: tempLocation,
+              map,
+              shouldFocus: false,
+            });
 
-  i++
-      }
+            setTimeout(function () { tempWindow.close(); }, 5000);
+
+          });
+
+
+          i++
+        }
       })
       // The marker, positioned at Tenn
       const marker = new google.maps.Marker({
