@@ -2,7 +2,7 @@
 
 import json
 
-day_cares = json.load(open('../../react-app/public/site_data/day_care.json'))
+day_cares = json.load(open('../../react-app/public/site_data/day_cares.json'))
 main_day_care_dictionary = {}
 
 for i in range(len(day_cares)):
