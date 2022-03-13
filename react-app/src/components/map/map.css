@@ -3,3 +3,15 @@
     width: 100%;
     height: 500px;
 }
+
+.test {
+    background-color: lightblue;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.stopbeingbig {
+    max-height: 50vh;
+}

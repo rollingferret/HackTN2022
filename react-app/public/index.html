@@ -7,7 +7,7 @@
   <style type="text/css">
     /* Set the size of the div element that contains the map */
     #map {
-      height: 60vh;
+      height: 50vh;
       /* The height is 400 pixels */
       width: 100%;
       /* The width is the width of the web page */
@@ -66,12 +66,12 @@
         let name = dayCare.name
         let i = 0;
 
-        console.log(dayCare)
+        // console.log(dayCare)
         let context = ''
 
 
           for (item in dayCare) {
-            console.log(item)
+            // console.log(item)
             context += 
             '<h3>' + item + '</h3>' +
             '<h3>' + dayCare[item] + '</h3>'
@@ -79,7 +79,7 @@
     
 
 
-        console.log(context)
+        // console.log(context)
 
 
 
@@ -97,7 +97,7 @@
         })
 
         tempLocation.addListener("click", () => {
-          console.log('hiiii')
+          // console.log('hiiii')
           if (prev) prev.close()
           tempWindow.open({
       anchor: tempLocation,
