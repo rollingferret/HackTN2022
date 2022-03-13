@@ -15,5 +15,23 @@
 .stopbeingbig {
     max-height: 40vh;
     overflow: scroll;
+    margin-bottom: 25px;
+
+}
+
+.banner {
+
+    border: 1px solid black;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 10px;
+    background-repeat: fill;
+    background-position: center;
+    background-image: url('./banner.jpg');
+
+
+
+
 
 }
