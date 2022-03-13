@@ -6,7 +6,7 @@ import json
 from geopy.geocoders import Nominatim
 app = Nominatim(user_agent='daycare_finder')
 
-daycares = json.load(open('../../react-app/site_data/formatted_daycares.json'))
+daycares = json.load(open('../../react-app/src/site_data/formatted_daycares.json'))
 main_daycare_dictionary = {}
 
 try:
@@ -18,10 +18,10 @@ try:
         main_daycare_dictionary[daycare_name] = daycare
         print(f"Added geolocation data for: {daycare['name']}")
 
-    with open('../../react-app/site_data/formatted_daycares.json', 'w') as formatted_daycares_file:
+    with open('../../react-app/src/site_data/formatted_daycares.json', 'w') as formatted_daycares_file:
         json.dump(main_daycare_dictionary, formatted_daycares_file, indent=4)
         print('File successfully written :D')
 except Exception as e:
-    with open('../../react-app/site_data/formatted_daycares.json', 'w') as formatted_daycares_file:
+    with open('../../react-app/src/site_data/formatted_daycares.json', 'w') as formatted_daycares_file:
         json.dump(main_daycare_dictionary, formatted_daycares_file, indent=4)
         print(f'File partially written, :O, the following error was encountered: {e}')
