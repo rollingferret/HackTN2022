@@ -2,7 +2,7 @@
 
 import json
 
-daycares = json.load(open('../../react-app/site_data/daycare.json'))
+daycares = json.load(open('../../react-app/src/site_data/dayCare.json'))
 main_daycare_dictionary = {}
 
 for i in range(len(daycares)):
@@ -34,6 +34,6 @@ for i in range(len(daycares)):
     main_daycare_dictionary[daycare[1].strip()] = formatted_daycare
     print(f'Added info for: {daycare[1]}')
 
-with open('../../react-app/site_data/formatted_daycares.json', 'w') as formatted_daycares_file:
+with open('../../react-app/src/site_data/formatted_daycares_test.json', 'w') as formatted_daycares_file:
     json.dump(main_daycare_dictionary, formatted_daycares_file, indent=4)
     print('File successfully written :D')
