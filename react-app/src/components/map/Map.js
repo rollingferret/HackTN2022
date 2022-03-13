@@ -1,5 +1,7 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker, Circle } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, Circle } from 'google-maps-react';  
+import './map.css';
+import dayCareInfo from '../../site_data/formatted_daycares.json'
 
 const mapStyles = {
     width: '40%',
@@ -9,8 +11,10 @@ const mapStyles = {
 let key = process.env.REACT_APP_GOOGLEMAPS
 // console.log(key)
 
-let lat = 35.5175
-let long = -86.5804
+let lat = 36.1627
+let long = -86.7816
+
+console.log(dayCareInfo, 'check here')
 
 if(navigator.geolocation) {
     console.log("navigator.geolocation is available");
@@ -39,10 +43,10 @@ export class MapContainer extends React.Component {
 
     render() {
         return (
-            <>
 
+            <div>
             <div>{lat} {long}</div>
-            <Map
+            <Map className="mapContainer"
                 google={this.props.google}
                 zoom={13}
                 style={mapStyles}
@@ -62,12 +66,12 @@ export class MapContainer extends React.Component {
             />
                 {/* <Marker position={{ lat: 39.7275, lng: -104.8791 }} /> */}
                 {
-                    Object.values(coords).map((coords) => {
-                        return <Marker position={{ lat: coords[0], lng: coords[1]}}/>
+                    Object.values(dayCareInfo).map((dayCare) => {
+                        return <Marker position={{ lat: dayCare.coordinates.latitude, lng: dayCare.coordinates.longitude}}/>
                     })
                 }
             </Map>
-            </>
+            </div>
         );
     }
 }
