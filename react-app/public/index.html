@@ -66,6 +66,23 @@
         let name = dayCare.name
         let i = 0;
 
+        console.log(dayCare)
+        let context = ''
+
+
+          for (item in dayCare) {
+            console.log(item)
+            context += 
+            '<h3>' + item + '</h3>' +
+            '<h3>' + dayCare[item] + '</h3>'
+          }
+    
+
+
+        console.log(context)
+
+
+
         let tempLocation =  this['location' + i]
         let tempWindow = this['infoWindow' + i]
 
@@ -76,7 +93,7 @@
         })
 
         tempWindow = new google.maps.InfoWindow({
-          content: name,
+          content: context,
         })
 
         tempLocation.addListener("click", () => {
@@ -111,7 +128,7 @@
 <body>
   <div id="react">
   </div>
-  <h3>Find local</h3>
+  <h3>Find local daycare</h3>
   <!--The div element for the map -->
   <div id="map"></div>
 
