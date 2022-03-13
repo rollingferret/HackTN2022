@@ -1,9 +1,15 @@
-"""Add geolocational data to day care JSON file."""
+"""Add geolocational data to day care JSON file.
+
+Addresses deemed "inexact" are accurate to the city and zip code.
+"""
 
 import json
+import socket
+
 from geopy.geocoders import Nominatim
 app = Nominatim(user_agent='day_care_finder')
 
+socket.setdefaulttimeout(900)
 day_cares = json.load(open('../../react-app/public/site_data/formatted_day_cares.json'))
 main_day_care_dictionary = {}
 
