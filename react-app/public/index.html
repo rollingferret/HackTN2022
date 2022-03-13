@@ -7,32 +7,34 @@
   <style type="text/css">
     /* Set the size of the div element that contains the map */
     #map {
-      height: 400px;
+      height: 50vh;
       /* The height is 400 pixels */
       width: 100%;
       /* The width is the width of the web page */
     }
   </style>
+
   <script>
     // Initialize and add the map
+
+    let lat
+    let long
+
+    if(navigator.geolocation) {
+    console.log("navigator.geolocation is available");
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log("current position acquired");
+      lat = Number(position.coords.latitude)
+      long = Number(position.coords.longitude)
+      console.log(lat, long)
+    });
+}
+
     async function initMap() {
       const res = await fetch('./site_data/formatted_day_cares.json')
       const dayCares = await res.json()
       const dayCaresArray = Object.values(dayCares)
   
-
-      let lat
-      let long
-
-      if(navigator.geolocation) {
-          console.log("navigator.geolocation is available");
-          navigator.geolocation.getCurrentPosition(function(position) {
-          console.log("current position acquired");
-          lat = Number(position.coords.latitude)
-          long = Number(position.coords.longitude)
-          console.log(lat, long)
-      });
-}
 
       // The location of Tenn
       const tenn = { lat: lat?lat:35.823659, lng: long?long:-84.046718 };
@@ -55,12 +57,31 @@
           map,
       })
 
+      let prev
+
       let dayCareMarkers = dayCaresArray.map((dayCare) => {
         if (dayCare.coordinates.accuracy === 'exact') {
     
         const position = { lat: dayCare.coordinates.latitude, lng: dayCare.coordinates.longitude }
         let name = dayCare.name
         let i = 0;
+
+        // console.log(dayCare)
+        let context = ''
+
+
+          for (item in dayCare) {
+            // console.log(item)
+            context += 
+            '<h3>' + item + '</h3>' +
+            '<h3>' + dayCare[item] + '</h3>'
+          }
+    
+
+
+        // console.log(context)
+
+
 
         let tempLocation =  this['location' + i]
         let tempWindow = this['infoWindow' + i]
@@ -72,18 +93,20 @@
         })
 
         tempWindow = new google.maps.InfoWindow({
-          content: name,
+          content: context,
         })
 
         tempLocation.addListener("click", () => {
-          console.log('hiiii')
+          // console.log('hiiii')
+          if (prev) prev.close()
           tempWindow.open({
       anchor: tempLocation,
       map,
       shouldFocus: false,
     });
 
-    setTimeout(function () { tempWindow.close(); }, 5000);
+    prev = tempWindow
+    setTimeout(function () { tempWindow.close(); }, 15000);
 
   });
  
@@ -96,6 +119,7 @@
         position: tenn,
         map: map,
         title: 'You are here!',
+        icon: 'favicon.ico'
       });
     }
   </script>
@@ -104,7 +128,7 @@
 <body>
   <div id="react">
   </div>
-  <h3>My Google Maps Demo</h3>
+  <h3>helps Find local daycare</h3>
   <!--The div element for the map -->
   <div id="map"></div>
 
