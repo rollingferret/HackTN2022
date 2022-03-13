@@ -15,17 +15,29 @@
   </style>
   <script>
     // Initialize and add the map
-    function initMap() {
+    async function initMap() {
+      const res = await fetch('./formatted_daycares.json')
+      const dayCares = await res.json()
+      const dayCaresArray = Object.values(dayCares)
+  
       // The location of Uluru
-      const uluru = { lat: -25.344, lng: 131.036 };
+      const shelby = { lat: 35.1269, lng: 89.9253 };
       // The map, centered at Uluru
       const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 4,
-        center: uluru,
+        center: shelby,
       });
+      let dayCareMarkers = dayCaresArray.map((dayCare) => {
+        const position = { lat: dayCare.coordinates.latitude, lng: dayCare.coordinates.longitude }
+
+        return new google.maps.Marker({
+          position,
+          map
+        })
+      })
       // The marker, positioned at Uluru
       const marker = new google.maps.Marker({
-        position: uluru,
+        position: shelby,
         map: map,
       });
     }
