@@ -61,7 +61,7 @@ const Map = () => {
 
     return (
         <>
-            <div className='banner'><div className='bannerwords'>Care for your day!</div></div>
+            <div className='banner'></div>
             <div className='stopbeingbig'>
             {closeBy.map((arg) => {
 

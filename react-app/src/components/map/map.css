@@ -21,6 +21,7 @@
 
 .banner {
 
+    height: 6vh;
     border: 1px solid black;
     border-radius: 15px;
     text-align: center;
@@ -29,9 +30,12 @@
     background-repeat: fill;
     background-position: center;
     background-image: url('./banner.jpg');
+    font-weight: bold;
+    color: black;
 
 
+}
 
-
+.bannerwords {
 
 }
