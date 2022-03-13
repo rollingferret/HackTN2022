@@ -42,7 +42,6 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <h1>HELLO</h1>
           <Map />
         </Route>
       </Switch>
