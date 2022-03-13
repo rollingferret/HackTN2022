@@ -9,8 +9,8 @@ const mapStyles = {
 let key = process.env.REACT_APP_GOOGLEMAPS
 // console.log(key)
 
-let lat = 36.174465
-let long = -86.767960
+let lat = 35.5175
+let long = -86.5804
 
 if(navigator.geolocation) {
     console.log("navigator.geolocation is available");
@@ -18,6 +18,7 @@ if(navigator.geolocation) {
       console.log("current position acquired");
       lat = Number(position.coords.latitude)
       long = Number(position.coords.longitude)
+      console.log(lat, long)
 
 
     });
@@ -25,6 +26,7 @@ if(navigator.geolocation) {
 
 }
 
+let coords = { test: [39.7275, -104.8791] }
 
 
 
@@ -47,7 +49,7 @@ export class MapContainer extends React.Component {
                 initialCenter={{ lat: lat, lng: long }}
             >
             <Circle
-                radius={1600}
+                radius={1200}
                 center={{ lat: lat, lng: long }}
                 onMouseover={() => console.log('mouseover')}
                 onClick={() => console.log('click')}
@@ -58,8 +60,12 @@ export class MapContainer extends React.Component {
                 fillColor='#FF0000'
                 fillOpacity={0.2}
             />
-                <Marker position={{ lat: 48.00, lng: -122.00 }} />
-                <Marker position={{ lat: 39.00, lng: -120.00 }} />
+                {/* <Marker position={{ lat: 39.7275, lng: -104.8791 }} /> */}
+                {
+                    Object.values(coords).map((coords) => {
+                        return <Marker position={{ lat: coords[0], lng: coords[1]}}/>
+                    })
+                }
             </Map>
             </>
         );
