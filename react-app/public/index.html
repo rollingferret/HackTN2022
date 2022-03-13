@@ -13,26 +13,28 @@
       /* The width is the width of the web page */
     }
   </style>
+
   <script>
     // Initialize and add the map
+
+    let lat
+    let long
+
+    if(navigator.geolocation) {
+    console.log("navigator.geolocation is available");
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log("current position acquired");
+      lat = Number(position.coords.latitude)
+      long = Number(position.coords.longitude)
+      console.log(lat, long)
+    });
+}
+
     async function initMap() {
       const res = await fetch('./formatted_daycares.json')
       const dayCares = await res.json()
       const dayCaresArray = Object.values(dayCares)
   
-
-      let lat
-      let long
-
-      if(navigator.geolocation) {
-          console.log("navigator.geolocation is available");
-          navigator.geolocation.getCurrentPosition(function(position) {
-          console.log("current position acquired");
-          lat = Number(position.coords.latitude)
-          long = Number(position.coords.longitude)
-          console.log(lat, long)
-      });
-}
 
       // The location of Tenn
       const tenn = { lat: lat?lat:35.823659, lng: long?long:-84.046718 };
@@ -54,6 +56,8 @@
           fillOpacity: 0.2,
           map,
       })
+
+      let prev
 
       let dayCareMarkers = dayCaresArray.map((dayCare) => {
         if (dayCare.coordinates.accuracy === 'exact') {
@@ -77,13 +81,15 @@
 
         tempLocation.addListener("click", () => {
           console.log('hiiii')
+          if (prev) prev.close()
           tempWindow.open({
       anchor: tempLocation,
       map,
       shouldFocus: false,
     });
 
-    setTimeout(function () { tempWindow.close(); }, 5000);
+    prev = tempWindow
+    setTimeout(function () { tempWindow.close(); }, 15000);
 
   });
  
@@ -96,6 +102,7 @@
         position: tenn,
         map: map,
         title: 'You are here!',
+        icon: 'favicon.ico'
       });
     }
   </script>
@@ -104,7 +111,7 @@
 <body>
   <div id="react">
   </div>
-  <h3>My Google Maps Demo</h3>
+  <h3>Find local</h3>
   <!--The div element for the map -->
   <div id="map"></div>
 
