@@ -9,8 +9,8 @@ const mapStyles = {
 let key = process.env.REACT_APP_GOOGLEMAPS
 // console.log(key)
 
-let lat
-let long
+let lat = 36.174465
+let long = -86.767960
 
 if(navigator.geolocation) {
     console.log("navigator.geolocation is available");
