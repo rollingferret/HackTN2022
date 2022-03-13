@@ -46,7 +46,7 @@ for (let item in data) {
     if (distance < 2) {
 
 
-        data[item].distance = distance
+        data[item].distance = distance.toFixed(1)
         closeBy.push(data[item])
 
     }
@@ -61,13 +61,13 @@ const Map = () => {
 
     return (
         <>
-            <h1>dis map</h1>
+            <div className='banner'><div className='bannerwords'>Care for your day!</div></div>
             <div className='stopbeingbig'>
             {closeBy.map((arg) => {
 
                 if (arg.star_rating === '/3') arg.star_rating = '0/3'
 
-return <div className='test' key={arg.address}><div>Name: {arg.name}<br></br> Address: {arg.address}<br></br> County: {arg.county}<br></br> Rating: {arg.star_rating}<br></br> Distance(inKM):{arg.distance}</div></div>
+return <div className='test' key={arg.address}><div>Name: {arg.name}<br></br> Address: {arg.address}<br></br> County: {arg.county}<br></br> Rating: {arg.star_rating}<br></br> Distance:{arg.distance}</div></div>
 
 })}
 </div>
