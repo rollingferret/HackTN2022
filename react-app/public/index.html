@@ -16,7 +16,7 @@
   <script>
     // Initialize and add the map
     async function initMap() {
-      const res = await fetch('./formatted_daycares.json')
+      const res = await fetch('./site_data/formatted_day_cares.json')
       const dayCares = await res.json()
       const dayCaresArray = Object.values(dayCares)
   
