@@ -1,6 +1,4 @@
-"""Add geolocational info to daycare JSON file."""
-
-"""Seed JSON file with longs and lats of daycare addresses."""
+"""Add geolocational data to daycare JSON file."""
 
 import json
 from geopy.geocoders import Nominatim
