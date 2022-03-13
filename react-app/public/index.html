@@ -41,6 +41,7 @@
       const map = new google.maps.Map(document.getElementById("map"), {
         zoom: 13,
         center: tenn,
+        title: 'You are here!'
       });
 
       let circle = new google.maps.Circle({
@@ -57,10 +58,12 @@
       let dayCareMarkers = dayCaresArray.map((dayCare) => {
         if (dayCare.coordinates.accuracy === 'exact') {
         const position = { lat: dayCare.coordinates.latitude, lng: dayCare.coordinates.longitude }
+        let name = dayCare.name
 
         return new google.maps.Marker({
           position,
-          map
+          map,
+          title: name,
         })
       }
       })
@@ -68,6 +71,7 @@
       const marker = new google.maps.Marker({
         position: tenn,
         map: map,
+        title: 'You are here!',
       });
     }
   </script>
