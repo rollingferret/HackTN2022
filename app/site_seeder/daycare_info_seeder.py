@@ -10,7 +10,7 @@ for i in range(len(daycares)):
     formatted_daycare = {}
     daycare_address = f'{daycare[2]}, {daycare[3]} {daycare[4]} {daycare[5]}'
     agent_contact_address = f'{daycare[8]}, {daycare[9]} {daycare[10]} {daycare[11]}'
-    formatted_daycare['county'], formatted_daycare['name'], formatted_daycare['number'], formatted_daycare['agency_contact'] = daycare[0], daycare[1], daycare[6], daycare[7]
+    formatted_daycare['county'], formatted_daycare['name'], formatted_daycare['number'], formatted_daycare['agency_contact'] = daycare[0], daycare[1].strip(), daycare[6], daycare[7]
     formatted_daycare['minimum_age'], formatted_daycare['maximum_age'], formatted_daycare['star_rating'], formatted_daycare['provider_type'] = daycare[12], daycare[13], f'{daycare[14]}/3', daycare[15]
     formatted_daycare['capacity'], formatted_daycare['open_time'], formatted_daycare['close_time'] = daycare[16], daycare[17], daycare[18]
     formatted_daycare['certificate_program_participant'] = True if daycare[19] == 'Y' else False
@@ -31,7 +31,7 @@ for i in range(len(daycares)):
     formatted_daycare['program_evaluator_number'] = daycare[37]
     formatted_daycare['address'] = daycare_address
     formatted_daycare['agency_contact_address'] = agent_contact_address
-    main_daycare_dictionary[daycare[1]] = formatted_daycare
+    main_daycare_dictionary[daycare[1].strip()] = formatted_daycare
     print(f'Added info for: {daycare[1]}')
 
 with open('../../react-app/site_data/formatted_daycares.json', 'w') as formatted_daycares_file:
