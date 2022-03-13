@@ -28,8 +28,8 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
     return deg * (Math.PI/180)
   }
 
-  let lat = 35.823659
-  let long = -84.046718
+  let lat = 36.174465
+  let long = -86.767960
 
 if(navigator.geolocation) {
     console.log("navigator.geolocation is available");
@@ -49,7 +49,7 @@ for (let item in data) {
     let distance = getDistanceFromLatLonInKm(left, right, lat, long)
 
 
-    if (distance < 3.5) {
+    if (distance < 2) {
 
 
         data[item].distance = distance
@@ -59,6 +59,8 @@ for (let item in data) {
 
 
 }
+
+closeBy.sort((a, b) => { return a.distance - b.distance })
 
 
 console.log(closeBy)
