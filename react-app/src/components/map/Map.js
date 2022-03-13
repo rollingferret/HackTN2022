@@ -4,9 +4,6 @@ import css from './map.css';
 let data = require('../../../src/site_data/formatted_daycares.json')
 
 let key = process.env.REACT_APP_GOOGLEMAPS
-// console.log(key)
-
-console.log(data, 'inside map')
 
 let closeBy = []
 
@@ -32,12 +29,9 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   let long = -86.767960
 
 if(navigator.geolocation) {
-    console.log("navigator.geolocation is available");
     navigator.geolocation.getCurrentPosition(function(position) {
-      console.log("current position acquired");
       let lat = Number(position.coords.latitude)
       let long = Number(position.coords.longitude)
-      console.log(lat, long)
     });
 }
 
@@ -62,9 +56,6 @@ for (let item in data) {
 
 closeBy.sort((a, b) => { return a.distance - b.distance })
 
-
-console.log(closeBy)
-
 const Map = () => {
 
 
@@ -76,7 +67,7 @@ const Map = () => {
 
                 if (arg.star_rating === '/3') arg.star_rating = '0/3'
 
-return <div className='test'><div>Name: {arg.name}<br></br> Address: {arg.address}<br></br> County: {arg.county}<br></br> Rating: {arg.star_rating}<br></br> Distance(inKM):{arg.distance}</div></div>
+return <div className='test' key={arg.address}><div>Name: {arg.name}<br></br> Address: {arg.address}<br></br> County: {arg.county}<br></br> Rating: {arg.star_rating}<br></br> Distance(inKM):{arg.distance}</div></div>
 
 })}
 </div>
